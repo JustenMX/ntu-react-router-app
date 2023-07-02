@@ -15,6 +15,10 @@ import ErrorPage from "./routes/ErrorPage";
 function App() {
   const [cartList, setCartList] = useState(productData);
   //
+  const handlerDeleteProduct = (id) => {
+    const newCartList = cartList.filter((item) => item.id !== id);
+    setCartList(newCartList);
+  };
   return (
     <BrowserRouter>
       <Routes>
@@ -23,7 +27,12 @@ function App() {
             <Route index element={<DefaultProductDetails />} />
             <Route
               path=":id"
-              element={<ProductDetails cartList={cartList} />}
+              element={
+                <ProductDetails
+                  cartList={cartList}
+                  handlerDeleteProduct={handlerDeleteProduct}
+                />
+              }
             />
           </Route>
           <Route path="add" element={<AddProduct />} />

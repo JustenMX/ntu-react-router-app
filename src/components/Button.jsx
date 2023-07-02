@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 function button(props) {
-  const { buttonLabel, path, className } = props;
+  const { buttonLabel, buttonFunc, path, className } = props;
   return (
     <>
-      <button className={className}>
+      <button className={className} onClick={buttonFunc}>
         <Link to={path}>{buttonLabel}</Link>
       </button>
     </>
