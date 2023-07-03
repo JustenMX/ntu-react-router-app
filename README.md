@@ -1,4 +1,10 @@
-# ntu-react-router-app
+## NTU SCTP in Software Engineering
+
+## Module 2.8 Assignment
+
+### React Router
+
+---
 
 ### Implement the Add Product Page
 
@@ -27,3 +33,9 @@ Create a new `Edit` component route to allow the user to edit a current product.
 4. Create a form submit handler function update the current item record in the state
    list, e.g. `handlerEditProduct()`
 5. After submission, automatically return to the `View` page.
+
+> work in progress
+
+### Currently Working On:
+
+- handler submit for the AddProduct (I am trying to include a valdiation check where all input fields needs to be filled up before allowed for submission and state updates)
