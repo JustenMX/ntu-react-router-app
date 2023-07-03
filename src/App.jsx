@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { v4 as uuidv4 } from "uuid";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import "./index.css";
@@ -17,7 +18,13 @@ function App() {
   const [editItem, setEditItem] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [isAddingProduct, setIsAddingProduct] = useState(false);
-  const [addProduct, setAddProduct] = useState({});
+  const [addProduct, setAddProduct] = useState({
+    id: uuidv4(),
+    name: "",
+    quantity: 0,
+    price: 0,
+    discount: 0,
+  });
   // Delete Product
   const handlerDeleteProduct = (id) => {
     const newCartList = cartList.filter((item) => item.id !== id);
@@ -132,15 +139,15 @@ function App() {
   const handlerAddProductSubmit = () => {
     for (const key in addProduct) {
       if (addProduct[key] === null || addProduct[key] === "") {
-        return alert("You have to fill up all fields");
+        alert("You have to fill up all fields");
+        return;
       }
     }
-
     const newProduct = { ...addProduct };
     setCartList([...cartList, newProduct]);
   };
-
   console.log(addProduct);
+  console.log(cartList);
 
   return (
     <BrowserRouter>

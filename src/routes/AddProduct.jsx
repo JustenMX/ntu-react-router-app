@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import Input from "../components/Input";
 function AddProduct(props) {
@@ -13,6 +14,7 @@ function AddProduct(props) {
     handlerAddProductCancel,
     handlerAddProductSubmit,
   } = props;
+  const navigate = useNavigate();
   return (
     <div>
       <section>
@@ -48,7 +50,7 @@ function AddProduct(props) {
                     <Input
                       className="border border-zinc-950 mb-5 w-72"
                       inputType="text"
-                      inputValue={addProduct.name || ""}
+                      inputValue={addProduct.name}
                       inputFunc={handlerAddProductName}
                     />
                     <p className="bg-gray-950 text-slate-50 rounded w-24 text-center mb-2">
@@ -57,7 +59,7 @@ function AddProduct(props) {
                     <Input
                       className="border border-zinc-950 mb-5 w-72"
                       inputType="number"
-                      inputValue={addProduct.price || ""}
+                      inputValue={addProduct.price}
                       inputFunc={handlerAddProductPrice}
                     />
                     <p className="bg-gray-950 text-slate-50 rounded w-24 text-center mb-2">
@@ -66,7 +68,7 @@ function AddProduct(props) {
                     <Input
                       className="border border-zinc-950 mb-5 w-72"
                       inputType="number"
-                      inputValue={addProduct.quantity || ""}
+                      inputValue={addProduct.quantity}
                       inputFunc={handlerAddProductQuantity}
                     />
                     <p className="bg-gray-950 text-slate-50 rounded w-24 text-center mb-2">
@@ -75,7 +77,7 @@ function AddProduct(props) {
                     <Input
                       className="border border-zinc-950 w-72"
                       inputType="number"
-                      inputValue={addProduct.discount || ""}
+                      inputValue={addProduct.discount}
                       inputFunc={handlerAddProductDiscount}
                     />
                   </div>
@@ -84,7 +86,10 @@ function AddProduct(props) {
                     <Button
                       className="mt-8 inline-block rounded bg-zinc-950 px-12 py-3 text-sm font-medium text-white transition hover:bg-zinc-800 focus:outline-none focus:ring focus:ring-yellow-400 mx-2"
                       buttonLabel="Submit"
-                      buttonFunc={handlerAddProductSubmit}
+                      buttonFunc={() => {
+                        handlerAddProductSubmit();
+                        navigate("/view");
+                      }}
                     />
                     <Button
                       className="mt-8 inline-block rounded bg-zinc-950 px-12 py-3 text-sm font-medium text-white transition hover:bg-zinc-800 focus:outline-none focus:ring focus:ring-yellow-400"

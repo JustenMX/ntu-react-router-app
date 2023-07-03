@@ -27,7 +27,7 @@ function ProductDetails(props) {
       <img
         src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
         alt="food"
-        className="h-[350px] w-full object-cover sm:h-[450px] border-black border-2 rounded-lg"
+        className="h-[100px] w-full object-cover sm:h-[200px] border-black border-2 rounded-lg"
       />
 
       <div className="mt-3 flex justify-between text-sm">
@@ -95,7 +95,9 @@ function ProductDetails(props) {
           <Button
             className=" w-full block rounded bg-zinc-950 px-5 py-3 text-sm text-slate-50 transition hover:bg-zinc-800 my-5"
             buttonLabel="Submit"
-            buttonFunc={handlerEditSubmit}
+            buttonFunc={() => {
+              handlerEditSubmit(), navigate("/view");
+            }}
           />
         </div>
       ) : (

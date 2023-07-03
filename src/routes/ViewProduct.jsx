@@ -34,37 +34,39 @@ function ViewProduct(props) {
           </button>
 
           <div className="mt-4 space-y-6">
-            {cartList.map((item) => (
-              <ul className="space-y-4" key={item.id}>
-                <li className="flex items-center gap-4">
-                  <img
-                    src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=830&q=80"
-                    alt="food"
-                    className="h-16 w-16 rounded object-cover"
-                  />
+            <div className="mt-4 space-y-6 h-96 overflow-y-auto">
+              {cartList.map((item) => (
+                <ul className="space-y-4" key={item.id}>
+                  <li className="flex items-center gap-4">
+                    <img
+                      src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=830&q=80"
+                      alt="food"
+                      className="h-16 w-16 rounded object-cover"
+                    />
 
-                  <div>
-                    <NavLink
-                      to={item.id}
-                      className={({ isActive }) =>
-                        isActive
-                          ? "text-sm text-slate-50 bg-zinc-950 rounded p-1"
-                          : "text-sm text-zinc-950 hover:bg-zinc-950 hover:text-slate-50 hover:p-1 rounded"
-                      }
-                    >
-                      {item.name}
-                    </NavLink>
+                    <div>
+                      <NavLink
+                        to={item.id}
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-sm text-slate-50 bg-zinc-950 rounded p-1"
+                            : "text-sm text-zinc-950 hover:bg-zinc-950 hover:text-slate-50 hover:p-1 rounded"
+                        }
+                      >
+                        {item.name}
+                      </NavLink>
 
-                    <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
-                      <div>
-                        <dt className="inline">Price:</dt>
-                        <dd className="inline">$ {item.price}</dd>
-                      </div>
-                    </dl>
-                  </div>
-                </li>
-              </ul>
-            ))}
+                      <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
+                        <div>
+                          <dt className="inline">Price:</dt>
+                          <dd className="inline">$ {item.price}</dd>
+                        </div>
+                      </dl>
+                    </div>
+                  </li>
+                </ul>
+              ))}
+            </div>
 
             <div className="space-y-4 text-center">
               <p className="block rounded border border-gray-600 px-5 py-3 text-sm text-gray-600">
