@@ -14,11 +14,76 @@ import ErrorPage from "./routes/ErrorPage";
 
 function App() {
   const [cartList, setCartList] = useState(productData);
-  //
+  const [editItem, setEditItem] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
+  // Delete Product
   const handlerDeleteProduct = (id) => {
     const newCartList = cartList.filter((item) => item.id !== id);
     setCartList(newCartList);
   };
+  // Edit Product
+  const handlerEditProduct = (id) => {
+    const newCartList = cartList.find((item) => item.id === id);
+    setEditItem(newCartList);
+    setIsEditing(true);
+    console.log(editItem);
+  };
+  // Cancel Edit
+  const handlerCancelEdit = () => {
+    setIsEditing(false);
+  };
+
+  // Handler Edit Name
+  const handlerEditName = (value) => {
+    setEditItem({
+      ...editItem,
+      name: value,
+    });
+  };
+
+  // Handler Edit Price
+  const handlerEditPrice = (value) => {
+    setEditItem({
+      ...editItem,
+      price: +value,
+    });
+  };
+
+  // Handler Edit Quantity
+  const handlerEditQuantity = (value) => {
+    setEditItem({
+      ...editItem,
+      quantity: +value,
+    });
+  };
+
+  // Handler Edit Discount
+  const handlerEditDiscount = (value) => {
+    setEditItem({
+      ...editItem,
+      discount: +value,
+    });
+  };
+
+  console.log(editItem);
+
+  // Handler Edit Submit
+  const handlerEditSubmit = () => {
+    const newList = cartList.map((item) => {
+      if (item.id === editItem.id) {
+        return {
+          ...item,
+          name: editItem.name,
+          price: editItem.price,
+          quantity: editItem.quantity,
+          discount: editItem.discount,
+        };
+      }
+      return item;
+    });
+    setCartList(newList);
+  };
+
   return (
     <BrowserRouter>
       <Routes>
@@ -31,6 +96,15 @@ function App() {
                 <ProductDetails
                   cartList={cartList}
                   handlerDeleteProduct={handlerDeleteProduct}
+                  handlerEditProduct={handlerEditProduct}
+                  handlerCancelEdit={handlerCancelEdit}
+                  handlerEditName={handlerEditName}
+                  handlerEditPrice={handlerEditPrice}
+                  handlerEditQuantity={handlerEditQuantity}
+                  handlerEditDiscount={handlerEditDiscount}
+                  handlerEditSubmit={handlerEditSubmit}
+                  editItem={editItem}
+                  isEditing={isEditing}
                 />
               }
             />
