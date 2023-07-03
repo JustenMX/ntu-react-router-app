@@ -16,6 +16,8 @@ function App() {
   const [cartList, setCartList] = useState(productData);
   const [editItem, setEditItem] = useState({});
   const [isEditing, setIsEditing] = useState(false);
+  const [isAddingProduct, setIsAddingProduct] = useState(false);
+  const [addProduct, setAddProduct] = useState({});
   // Delete Product
   const handlerDeleteProduct = (id) => {
     const newCartList = cartList.filter((item) => item.id !== id);
@@ -65,8 +67,6 @@ function App() {
     });
   };
 
-  console.log(editItem);
-
   // Handler Edit Submit
   const handlerEditSubmit = () => {
     const newList = cartList.map((item) => {
@@ -82,7 +82,65 @@ function App() {
       return item;
     });
     setCartList(newList);
+    setIsEditing(false);
   };
+
+  // AddProduct.jsx
+
+  const handlerStart = () => {
+    setIsAddingProduct(true);
+  };
+
+  // onChange Add Product Name
+  const handlerAddProductName = (value) => {
+    setAddProduct({
+      ...addProduct,
+      name: value,
+    });
+  };
+
+  // onChange Add Product Price
+  const handlerAddProductPrice = (value) => {
+    setAddProduct({
+      ...addProduct,
+      price: +value,
+    });
+  };
+
+  // onChange Add Product Quantity
+  const handlerAddProductQuantity = (value) => {
+    setAddProduct({
+      ...addProduct,
+      quantity: +value,
+    });
+  };
+
+  // onChange Add Product Quantity
+  const handlerAddProductDiscount = (value) => {
+    setAddProduct({
+      ...addProduct,
+      discount: +value,
+    });
+  };
+
+  // handler AddProduct cancel
+  const handlerAddProductCancel = () => {
+    setIsAddingProduct(false);
+  };
+
+  // handler AddProduct Submit
+  const handlerAddProductSubmit = () => {
+    for (const key in addProduct) {
+      if (addProduct[key] === null || addProduct[key] === "") {
+        return alert("You have to fill up all fields");
+      }
+    }
+
+    const newProduct = { ...addProduct };
+    setCartList([...cartList, newProduct]);
+  };
+
+  console.log(addProduct);
 
   return (
     <BrowserRouter>
@@ -109,7 +167,22 @@ function App() {
               }
             />
           </Route>
-          <Route path="add" element={<AddProduct />} />
+          <Route
+            path="add"
+            element={
+              <AddProduct
+                isAddingProduct={isAddingProduct}
+                handlerStart={handlerStart}
+                addProduct={addProduct}
+                handlerAddProductName={handlerAddProductName}
+                handlerAddProductPrice={handlerAddProductPrice}
+                handlerAddProductQuantity={handlerAddProductQuantity}
+                handlerAddProductDiscount={handlerAddProductDiscount}
+                handlerAddProductCancel={handlerAddProductCancel}
+                handlerAddProductSubmit={handlerAddProductSubmit}
+              />
+            }
+          />
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
