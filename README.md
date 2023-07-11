@@ -4,8 +4,6 @@
 
 ### React Router
 
-### Brief
-
 React web application that leverages the power of React Router hooks. With this project, you'll explore how to create dynamic and interactive user interfaces using React Router. The application utilizes React's component-based architecture to seamlessly navigate between different pages and routes. Whether you're new to React or looking to enhance your skills in React Router, this project provides valuable insights and practical examples.
 
 ### Implement the Add Product Page
